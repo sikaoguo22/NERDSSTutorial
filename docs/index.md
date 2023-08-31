@@ -1,75 +1,42 @@
-# Welcome to NERDSS
+# Welcome to NERDSS Tutorials
 
- NERDSS is a structure-resolved reaction-diffusion simulation software developed by [Johnson Lab, JHU](https://sites.krieger.jhu.edu/johnson-lab/)
+Welcome to the official tutorials for NERDSS, NonEquilibrium Reaction-Diffusion Self-assembly Simulator.
 
-## Quick Start Guide for NERDSS Setup
+![NERDSS Logo](images/nerdss_logo.png)
 
-**Note**:
+NERDSS is a state-of-the-art scientific software designed to help researchers simulate the structure-resolved reaction-diffusion model in cell.
 
-If you prefer using [Docker](https://www.docker.com) for environment setup, jump directly to **Step 4**.
+---
 
-Windows users: It's recommended to use either Windows Subsystem for Linux (WSL) or [Docker](https://www.docker.com).
+## Getting Started
 
-**Step 1: Clone the Repository**
+- [Installation Guide](installation.md)
+- [Basic Usage](basic_usage.md)
 
-```bash
-git clone https://github.com/mjohn218/NERDSS.git
-```
+---
 
-**Step 2: Install Dependencies**
+## Tutorials
 
-- **For Ubuntu or WSL:**
+Dive deep into specific features and use-cases with our detailed tutorials.
 
-```bash
-sudo apt-get update && sudo apt-get install -y build-essential libgsl-dev
-```
+- [Tutorial 1: Get Molecule Geometry from PDB Structure](getMolGeometryFromPDBStructure.md)
+- [Tutorial 2: Clathrin Assembly](clathrinAssembly.md)
+- [Tutorial 3: Virus Assembly](virusAssembly.md)
+- [Tutorial 4: Data Analysis of Output](dataAnalysis.md)
 
-- **For macOS:**
+---
 
-Install Homebrew:
+## Community & Support
 
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
+- [GitHub Repository](https://github.com/mjohn218/NERDSS)
+- [FAQs](faqs.md)
 
-Install GCC and GSL:
+---
 
-```bash
-brew update
-brew install gcc gsl
-```
+## Publications
 
-**Step 3: Compile NERDSS**
+- [Full Publication List](pub.md)
 
-Navigate to the NERDSS directory and compile:
+---
 
-```bash
-cd NERDSS
-make serial
-```
-
-The resulting executable will be located in the `bin` folder.
-
-**Step 4: Using Docker for Environment Setup (Optional)**
-
-If you'd rather not install the required tools directly on your machine, you can use Docker:
-
-- Install [Docker](https://www.docker.com)
-
-- Build the Docker image using the provided [Dockerfile](./Dockerfile):
-
-```bash
-docker build -t my_nerdss_image .
-```
-
-Run the Docker container:
-
-```bash
-docker run -it -v $(pwd):/SIMULATION my_nerdss_image
-```
-
-This command mounts your current directory to the `/SIMULATION` directory inside the container. Changes made inside the container's `/SIMULATION` directory will reflect in your host system's current directory and vice versa. You can run the `nerdss` command in any folder of the container.
-
-# Running a Basic NERDSS Simulation
-
-Once NERDSS is installed, let's run a basic simulation to understand the philosophy behind NERDSS.
+We ask that you cite: Varga, M., Fu, Y., Loggia, S., Yogurtcu, O.N., & M.E. Johnson NERDSS: a nonequilibrium simulator for multibody self-assembly at the cellular scale. Biophysical Journal 118, P3026-P3040 (2020) in all publications that make use of NERDSS.

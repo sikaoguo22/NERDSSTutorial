@@ -1,3 +1,29 @@
-site_name: NERDSS Tutorials and Examples
+site_name: NERDSS Tutorials
+site_url: https://sikaoguo22.github.io/NERDSSTutorial/
+repo_url: https://github.com/mjohn218/NERDSS
+repo_name: NERDSS Repo
+
 theme:
   name: 'material'
+  logo: 'images/nerdss_logo.png'
+  favicon: 'images/favicon.ico'
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - search.suggest
+  footer:
+    copyright: '© 2023 NERDSS'
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Basic Usage: basic_usage.md
+  - Tutorials:
+    - GetMolGeometryFromPDBStructure: getMolGeometryFromPDBStructure.md
+    - ClathrinAssembly: clathrinAssembly.md
+    - VirusAssembly: virusAssembly.md
+    - DataAnalysisOfOutput: dataAnalysis.md
+  - Community:
+    - GitHub: https://github.com/mjohn218/NERDSS
+    - FAQs: faqs.md
+  - Publications: pub.md
