@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-nerdss" class="md-skip">
+        <a href="#quick-start-guide-for-nerdss-setup" class="md-skip">
           Skip to content
         </a>
       
@@ -356,8 +356,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -385,8 +383,6 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-  
-    
   
   
     <label class="md-nav__title" for="__toc">
@@ -667,8 +663,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -701,8 +695,8 @@
   
 
 
-<h1 id="welcome-to-nerdss">Welcome to NERDSS</h1>
-<p>NERDSS is a structure-resolved reaction-diffusion simulation software developed by <a href="https://sites.krieger.jhu.edu/johnson-lab/">Johnson Lab, JHU</a></p>
+  <h1>Installation</h1>
+
 <h2 id="quick-start-guide-for-nerdss-setup">Quick Start Guide for NERDSS Setup</h2>
 <p><strong>Note</strong>:</p>
 <p>If you prefer using <a href="https://www.docker.com">Docker</a> for environment setup, jump directly to <strong>Step 4</strong>.</p>
@@ -735,12 +729,11 @@ make serial
 <p><strong>Step 4: Using Docker for Environment Setup (Optional)</strong></p>
 <p>If you'd rather not install the required tools directly on your machine, you can use Docker:</p>
 <ul>
-<li>
-<p>Install <a href="https://www.docker.com">Docker</a></p>
-</li>
-<li>
-<p>Build the Docker image using the provided <a href="../Dockerfile">Dockerfile</a>:</p>
-</li>
+<li>Install <a href="https://www.docker.com">Docker</a></li>
+</ul>
+<p>Option 1:</p>
+<ul>
+<li>Build the Docker image using the provided <a href="../Dockerfile">Dockerfile</a>:</li>
 </ul>
 <pre><code class="language-bash">docker build -t my_nerdss_image .
 </code></pre>
@@ -748,8 +741,31 @@ make serial
 <pre><code class="language-bash">docker run -it -v $(pwd):/SIMULATION my_nerdss_image
 </code></pre>
 <p>This command mounts your current directory to the <code>/SIMULATION</code> directory inside the container. Changes made inside the container's <code>/SIMULATION</code> directory will reflect in your host system's current directory and vice versa. You can run the <code>nerdss</code> command in any folder of the container.</p>
-<h1 id="running-a-basic-nerdss-simulation">Running a Basic NERDSS Simulation</h1>
-<p>Once NERDSS is installed, let's run a basic simulation to understand the philosophy behind NERDSS.</p>
+<p>Option 2:</p>
+<ul>
+<li>Pull the pre-configured Docker image:</li>
+</ul>
+<pre><code class="language-bash">docker pull sikaoguo/nerdsstutorial:latest
+</code></pre>
+<ul>
+<li>Launch the Docker image in interactive mode:</li>
+</ul>
+<pre><code class="language-bash">docker run -v /path/on/host:/SIMULATION -it sikaoguo/nerdsstutorial:latest
+</code></pre>
+<p>When you do this, any changes you make to <code>/path/on/host</code> on your local machine will be reflected in <code>/SIMULATION</code> in the Docker container, and vice versa.</p>
+<ol>
+<li>
+<p>Copying files from host to container: 
+    <code>bash
+    docker cp &lt;path-on-host&gt; &lt;container-id-or-name&gt;:&lt;path-in-container&gt;</code></p>
+</li>
+<li>
+<p>Copying files from container to host:
+    <code>bash
+    docker cp &lt;container-id-or-name&gt;:&lt;path-in-container&gt; &lt;path-on-host&gt;</code></p>
+</li>
+</ol>
+<p>For those who prefer avoiding the command line, you have an alternative: leveraging the Docker extension within Visual Studio Code.</p>
 
 
 
