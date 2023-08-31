@@ -6,9 +6,9 @@
 
 **Note**:
 
-If you prefer using Docker for environment setup, jump directly to **Step 4**.
+If you prefer using [Docker](https://www.docker.com) for environment setup, jump directly to **Step 4**.
 
-Windows users: It's recommended to use either Windows Subsystem for Linux (WSL) or Docker.
+Windows users: It's recommended to use either Windows Subsystem for Linux (WSL) or [Docker](https://www.docker.com).
 
 **Step 1: Clone the Repository**
 
@@ -21,7 +21,7 @@ git clone https://github.com/mjohn218/NERDSS.git
 - **For Ubuntu or WSL:**
 
 ```bash
-sudo apt-get update && sudo apt-get install -y g++ libgsl-dev
+sudo apt-get update && sudo apt-get install -y build-essential libgsl-dev
 ```
 
 - **For macOS:**
@@ -45,7 +45,7 @@ Navigate to the NERDSS directory and compile:
 
 ```bash
 cd NERDSS
-make
+make serial
 ```
 
 The resulting executable will be located in the `bin` folder.
@@ -53,6 +53,8 @@ The resulting executable will be located in the `bin` folder.
 **Step 4: Using Docker for Environment Setup (Optional)**
 
 If you'd rather not install the required tools directly on your machine, you can use Docker:
+
+- Install [Docker](https://www.docker.com)
 
 - Build the Docker image using the provided [Dockerfile](./Dockerfile):
 
@@ -63,7 +65,11 @@ docker build -t my_nerdss_image .
 Run the Docker container:
 
 ```bash
-docker run -it -v $(pwd):/NERDSS my_nerdss_image
+docker run -it -v $(pwd):/SIMULATION my_nerdss_image
 ```
 
-This command mounts your current directory to the `/NERDSS` directory inside the container. Changes made inside the container's `/NERDSS` directory will reflect in your host system's current directory and vice versa.
+This command mounts your current directory to the `/SIMULATION` directory inside the container. Changes made inside the container's `/SIMULATION` directory will reflect in your host system's current directory and vice versa. You can run the `nerdss` command in any folder of the container.
+
+# Running a Basic NERDSS Simulation
+
+Once NERDSS is installed, let's run a basic simulation to understand the philosophy behind NERDSS.
