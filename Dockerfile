@@ -6,17 +6,19 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Update and install packages
 RUN apt-get update && apt-get install -y \
-    g++ \
+    build-essential \
     libgsl-dev \
     git
+
+# Clone NERDSS and compile it
+RUN git clone https://github.com/mjohn218/NERDSS.git /NERDSS \
+    && cd /NERDSS \
+    && make serial \
+    && mv bin/nerdss /usr/local/bin/ \
+    && rm -rf /NERDSS
 
 # Set the default command for the container
 CMD ["/bin/bash"]
 
-# Install NERDSS
-RUN git clone https://github.com/mjohn218/NERDSS.git \
-    && cd NERDSS \
-    && make
-
 # Set up your working directory
-WORKDIR /NERDSS
+WORKDIR /SIMULATION

@@ -298,8 +298,8 @@
 <p>NERDSS is a structure-resolved reaction-diffusion simulation software developed by <a href="https://sites.krieger.jhu.edu/johnson-lab/">Johnson Lab, JHU</a></p>
 <h2 id="quick-start-guide-for-nerdss-setup">Quick Start Guide for NERDSS Setup</h2>
 <p><strong>Note</strong>:</p>
-<p>If you prefer using Docker for environment setup, jump directly to <strong>Step 4</strong>.</p>
-<p>Windows users: It's recommended to use either Windows Subsystem for Linux (WSL) or Docker.</p>
+<p>If you prefer using <a href="https://www.docker.com">Docker</a> for environment setup, jump directly to <strong>Step 4</strong>.</p>
+<p>Windows users: It's recommended to use either Windows Subsystem for Linux (WSL) or <a href="https://www.docker.com">Docker</a>.</p>
 <p><strong>Step 1: Clone the Repository</strong></p>
 <pre><code class="language-bash">git clone https://github.com/mjohn218/NERDSS.git
 </code></pre>
@@ -307,7 +307,7 @@
 <ul>
 <li><strong>For Ubuntu or WSL:</strong></li>
 </ul>
-<pre><code class="language-bash">sudo apt-get update &amp;&amp; sudo apt-get install -y g++ libgsl-dev
+<pre><code class="language-bash">sudo apt-get update &amp;&amp; sudo apt-get install -y build-essential libgsl-dev
 </code></pre>
 <ul>
 <li><strong>For macOS:</strong></li>
@@ -322,20 +322,27 @@ brew install gcc gsl
 <p><strong>Step 3: Compile NERDSS</strong></p>
 <p>Navigate to the NERDSS directory and compile:</p>
 <pre><code class="language-bash">cd NERDSS
-make
+make serial
 </code></pre>
 <p>The resulting executable will be located in the <code>bin</code> folder.</p>
 <p><strong>Step 4: Using Docker for Environment Setup (Optional)</strong></p>
 <p>If you'd rather not install the required tools directly on your machine, you can use Docker:</p>
 <ul>
-<li>Build the Docker image using the provided <a href="Dockerfile">Dockerfile</a>:</li>
+<li>
+<p>Install <a href="https://www.docker.com">Docker</a></p>
+</li>
+<li>
+<p>Build the Docker image using the provided <a href="Dockerfile">Dockerfile</a>:</p>
+</li>
 </ul>
 <pre><code class="language-bash">docker build -t my_nerdss_image .
 </code></pre>
 <p>Run the Docker container:</p>
-<pre><code class="language-bash">docker run -it -v $(pwd):/NERDSS my_nerdss_image
+<pre><code class="language-bash">docker run -it -v $(pwd):/SIMULATION my_nerdss_image
 </code></pre>
-<p>This command mounts your current directory to the <code>/NERDSS</code> directory inside the container. Changes made inside the container's <code>/NERDSS</code> directory will reflect in your host system's current directory and vice versa.</p>
+<p>This command mounts your current directory to the <code>/SIMULATION</code> directory inside the container. Changes made inside the container's <code>/SIMULATION</code> directory will reflect in your host system's current directory and vice versa. You can run the <code>nerdss</code> command in any folder of the container.</p>
+<h1 id="running-a-basic-nerdss-simulation">Running a Basic NERDSS Simulation</h1>
+<p>Once NERDSS is installed, let's run a basic simulation to understand the philosophy behind NERDSS.</p>
 
 
 
