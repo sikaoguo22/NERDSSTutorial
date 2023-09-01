@@ -90,3 +90,9 @@ When you do the above, any changes you make to current folder on your local mach
     ```bash
     docker cp <container-id-or-name>:<path-in-container> <path-on-host>
     ```
+
+For optimal performance, construct your Docker image tailored to your chip type using the supplied [Dockerfile](./Dockerfile) and [entrypoint.sh](./entrypoint.sh):
+
+```bash
+docker build -t nerdsstutorial .
+```
