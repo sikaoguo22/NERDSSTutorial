@@ -739,28 +739,18 @@ make serial
 <pre><code class="language-bash">docker pull sikaoguo/nerdsstutorial:latest
 </code></pre>
 <ul>
-<li>
-<p>Launch the Docker image:</p>
-</li>
-<li>
-<p>To run <code>nerdss</code> with the <code>.inp</code> file in the current folder and start Jupyter for analyze after the simulation done:</p>
-</li>
+<li>Launch the Docker image:</li>
 </ul>
+<p>To run <code>nerdss</code> with the <code>.inp</code> file in the current folder and start Jupyter for analyze after the simulation done:</p>
 <pre><code class="language-bash">docker run -e RUN_NERDSS=true -e ANALYZE_OUTPUT=true -p 8888:8888 -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
 </code></pre>
-<ol>
-<li>To run only <code>nerdss</code>:</li>
-</ol>
+<p>To run only <code>nerdss</code>:</p>
 <pre><code class="language-bash">docker run -e RUN_NERDSS=true -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
 </code></pre>
-<ol>
-<li>To start only <code>Jupyter</code>:</li>
-</ol>
+<p>To start only <code>Jupyter</code>:</p>
 <pre><code class="language-bash">docker run -e ANALYZE_OUTPUT=true -p 8888:8888 -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
 </code></pre>
-<ol>
-<li>To run Container only:</li>
-</ol>
+<p>To run Container only:</p>
 <pre><code class="language-bash">docker run -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
 </code></pre>
 <p>Note: Replace <code>$(pwd)</code> with <code>${PWD}</code> in Windows powershell.</p>
