@@ -54,8 +54,13 @@ If you'd rather not install the required tools directly on your machine, you can
 
 - Pull the pre-configured Docker image:
 
+Intel Chip:
 ```bash
 docker pull sikaoguo/nerdsstutorial:latest
+```
+Mac M1 Chip:
+```bash
+docker pull sikaoguo/nerdsstutorial:m1
 ```
 
 - Launch the Docker image:
@@ -90,9 +95,3 @@ When you do the above, any changes you make to current folder on your local mach
     ```bash
     docker cp <container-id-or-name>:<path-in-container> <path-on-host>
     ```
-
-For optimal performance, construct your Docker image tailored to your chip type using the supplied [Dockerfile](./Dockerfile) and [entrypoint.sh](./entrypoint.sh):
-
-```bash
-docker build -t nerdsstutorial .
-```
