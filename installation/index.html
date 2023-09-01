@@ -736,7 +736,11 @@ make serial
 <p>Pull the pre-configured Docker image:</p>
 </li>
 </ul>
+<p>Intel Chip:</p>
 <pre><code class="language-bash">docker pull sikaoguo/nerdsstutorial:latest
+</code></pre>
+<p>Mac M1 Chip:</p>
+<pre><code class="language-bash">docker pull sikaoguo/nerdsstutorial:m1
 </code></pre>
 <ul>
 <li>Launch the Docker image:</li>
@@ -767,9 +771,6 @@ make serial
     docker cp &lt;container-id-or-name&gt;:&lt;path-in-container&gt; &lt;path-on-host&gt;</code></p>
 </li>
 </ol>
-<p>For optimal performance, construct your Docker image tailored to your chip type using the supplied <a href="../Dockerfile">Dockerfile</a> and <a href="../entrypoint.sh">entrypoint.sh</a>:</p>
-<pre><code class="language-bash">docker build -t nerdsstutorial .
-</code></pre>
 
 
 
