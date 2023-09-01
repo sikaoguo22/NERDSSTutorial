@@ -700,7 +700,7 @@
 <h2 id="quick-start-guide-for-nerdss-setup">Quick Start Guide for NERDSS Setup</h2>
 <p><strong>Note</strong>:</p>
 <p>If you prefer using <a href="https://www.docker.com">Docker</a> for environment setup, jump directly to <strong>Step 4</strong>.</p>
-<p>Windows users: It's recommended to use either Windows Subsystem for Linux (WSL) or <a href="https://www.docker.com">Docker</a>.</p>
+<p>Windows OS: It's recommended to use either Windows Subsystem for Linux (WSL) or <a href="https://www.docker.com">Docker</a>.</p>
 <p><strong>Step 1: Clone the Repository</strong></p>
 <pre><code class="language-bash">git clone https://github.com/mjohn218/NERDSS.git
 </code></pre>
@@ -763,6 +763,7 @@ make serial
 </ol>
 <pre><code class="language-bash">docker run -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
 </code></pre>
+<p>Note: Replace <code>$(pwd)</code> with <code>${PWD}</code> in Windows powershell.</p>
 <p>When you do the above, any changes you make to current folder on your local machine will be reflected in <code>/SIMULATION</code> in the Docker container, and vice versa.</p>
 <ol>
 <li>
