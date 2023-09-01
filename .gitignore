@@ -1,0 +1,11 @@
+# .gitignore
+.Trash-0
+.ipynb_checkpoints
+site\
+
+# VS Code
+.vscode/
+
+~*
+*~
+.DS_Store

@@ -1,14 +1,10 @@
-# Welcome to NERDSS
-
- NERDSS is a structure-resolved reaction-diffusion simulation software developed by [Johnson Lab, JHU](https://sites.krieger.jhu.edu/johnson-lab/)
-
 ## Quick Start Guide for NERDSS Setup
 
 **Note**:
 
 If you prefer using [Docker](https://www.docker.com) for environment setup, jump directly to **Step 4**.
 
-Windows users: It's recommended to use either Windows Subsystem for Linux (WSL) or [Docker](https://www.docker.com).
+Windows OS: It's recommended to use either Windows Subsystem for Linux (WSL) or [Docker](https://www.docker.com).
 
 **Step 1: Clone the Repository**
 
@@ -56,20 +52,41 @@ If you'd rather not install the required tools directly on your machine, you can
 
 - Install [Docker](https://www.docker.com)
 
-- Build the Docker image using the provided [Dockerfile](./Dockerfile):
+- Pull the pre-configured Docker image:
 
 ```bash
-docker build -t my_nerdss_image .
+docker pull sikaoguo/nerdsstutorial:latest
 ```
 
-Run the Docker container:
+- Launch the Docker image:
 
+1. To run `nerdss` with the `.inp` file in the current folder and start Jupyter for analyze after the simulation done:
 ```bash
-docker run -it -v $(pwd):/SIMULATION my_nerdss_image
+docker run -e RUN_NERDSS=true -e ANALYZE_OUTPUT=true -p 8888:8888 -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
+```
+2. To run only `nerdss`:
+```bash
+docker run -e RUN_NERDSS=true -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
+```
+3. To start only `Jupyter`:
+```bash
+docker run -e ANALYZE_OUTPUT=true -p 8888:8888 -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
+```
+4. To run Container only:
+```bash
+docker run -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
 ```
 
-This command mounts your current directory to the `/SIMULATION` directory inside the container. Changes made inside the container's `/SIMULATION` directory will reflect in your host system's current directory and vice versa. You can run the `nerdss` command in any folder of the container.
+Note: Replace `$(pwd)` with `${PWD}` in Windows powershell.
 
-# Running a Basic NERDSS Simulation
+When you do the above, any changes you make to current folder on your local machine will be reflected in `/SIMULATION` in the Docker container, and vice versa.
 
-Once NERDSS is installed, let's run a basic simulation to understand the philosophy behind NERDSS.
+1. Copying files from host to container: 
+    ```bash
+    docker cp <path-on-host> <container-id-or-name>:<path-in-container>
+    ```
+
+2. Copying files from container to host:
+    ```bash
+    docker cp <container-id-or-name>:<path-in-container> <path-on-host>
+    ```
