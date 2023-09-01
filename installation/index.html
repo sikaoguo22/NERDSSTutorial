@@ -729,30 +729,41 @@ make serial
 <p><strong>Step 4: Using Docker for Environment Setup (Optional)</strong></p>
 <p>If you'd rather not install the required tools directly on your machine, you can use Docker:</p>
 <ul>
-<li>Install <a href="https://www.docker.com">Docker</a></li>
-</ul>
-<p>Option 1:</p>
-<ul>
-<li>Build the Docker image using the provided <a href="../Dockerfile">Dockerfile</a>:</li>
-</ul>
-<pre><code class="language-bash">docker build -t my_nerdss_image .
-</code></pre>
-<p>Run the Docker container:</p>
-<pre><code class="language-bash">docker run -it -v $(pwd):/SIMULATION my_nerdss_image
-</code></pre>
-<p>This command mounts your current directory to the <code>/SIMULATION</code> directory inside the container. Changes made inside the container's <code>/SIMULATION</code> directory will reflect in your host system's current directory and vice versa. You can run the <code>nerdss</code> command in any folder of the container.</p>
-<p>Option 2:</p>
-<ul>
-<li>Pull the pre-configured Docker image:</li>
+<li>
+<p>Install <a href="https://www.docker.com">Docker</a></p>
+</li>
+<li>
+<p>Pull the pre-configured Docker image:</p>
+</li>
 </ul>
 <pre><code class="language-bash">docker pull sikaoguo/nerdsstutorial:latest
 </code></pre>
 <ul>
-<li>Launch the Docker image in interactive mode:</li>
+<li>
+<p>Launch the Docker image:</p>
+</li>
+<li>
+<p>To run <code>nerdss</code> with the <code>.inp</code> file in the current folder and start Jupyter for analyze after the simulation done:</p>
+</li>
 </ul>
-<pre><code class="language-bash">docker run -v /path/on/host:/SIMULATION -it sikaoguo/nerdsstutorial:latest
+<pre><code class="language-bash">docker run -e RUN_NERDSS=true -e ANALYZE_OUTPUT=true -p 8888:8888 -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
 </code></pre>
-<p>When you do this, any changes you make to <code>/path/on/host</code> on your local machine will be reflected in <code>/SIMULATION</code> in the Docker container, and vice versa.</p>
+<ol>
+<li>To run only <code>nerdss</code>:</li>
+</ol>
+<pre><code class="language-bash">docker run -e RUN_NERDSS=true -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
+</code></pre>
+<ol>
+<li>To start only <code>Jupyter</code>:</li>
+</ol>
+<pre><code class="language-bash">docker run -e ANALYZE_OUTPUT=true -p 8888:8888 -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
+</code></pre>
+<ol>
+<li>To run Container only:</li>
+</ol>
+<pre><code class="language-bash">docker run -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
+</code></pre>
+<p>When you do the above, any changes you make to current folder on your local machine will be reflected in <code>/SIMULATION</code> in the Docker container, and vice versa.</p>
 <ol>
 <li>
 <p>Copying files from host to container: 
@@ -765,7 +776,6 @@ make serial
     docker cp &lt;container-id-or-name&gt;:&lt;path-in-container&gt; &lt;path-on-host&gt;</code></p>
 </li>
 </ol>
-<p>For those who prefer avoiding the command line, you have an alternative: leveraging the Docker extension within Visual Studio Code.</p>
 
 
 
