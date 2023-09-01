@@ -767,6 +767,9 @@ make serial
     docker cp &lt;container-id-or-name&gt;:&lt;path-in-container&gt; &lt;path-on-host&gt;</code></p>
 </li>
 </ol>
+<p>For optimal performance, construct your Docker image tailored to your chip type using the supplied <a href="../Dockerfile">Dockerfile</a> and <a href="../entrypoint.sh">entrypoint.sh</a>:</p>
+<pre><code class="language-bash">docker build -t nerdsstutorial .
+</code></pre>
 
 
 
