@@ -60,19 +60,19 @@ docker pull sikaoguo/nerdsstutorial:latest
 
 - Launch the Docker image:
 
-1. To run `nerdss` with the `.inp` file in the current folder and start Jupyter for analyze after the simulation done:
+To run `nerdss` with the `.inp` file in the current folder and start Jupyter for analyze after the simulation done:
 ```bash
 docker run -e RUN_NERDSS=true -e ANALYZE_OUTPUT=true -p 8888:8888 -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
 ```
-2. To run only `nerdss`:
+To run only `nerdss`:
 ```bash
 docker run -e RUN_NERDSS=true -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
 ```
-3. To start only `Jupyter`:
+To start only `Jupyter`:
 ```bash
 docker run -e ANALYZE_OUTPUT=true -p 8888:8888 -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
 ```
-4. To run Container only:
+To run Container only:
 ```bash
 docker run -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
 ```

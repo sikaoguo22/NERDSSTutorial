@@ -1,7 +1,7 @@
 # .gitignore
 .Trash-0
 .ipynb_checkpoints
-site\
+site
 
 # VS Code
 .vscode/
