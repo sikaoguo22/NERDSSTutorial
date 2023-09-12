@@ -6,7 +6,7 @@ After installing NERDSS, let's run a basic simulation to understand its philosop
 
 Following is the content of the .inp file that we will use in the simulaiton . You can download it [here](./NERDSSInputs/basic.inp). Please refer to [user guide](https://github.com/mjohn218/NERDSS/blob/master/NERDSS_USER_GUIDE.pdf) in the NERDSS repository for the explanation of each parameter.
 
-```plain text
+```bash
 start parameters
     nItr = 700000 # steps
     timeStep = 0.1 # us
