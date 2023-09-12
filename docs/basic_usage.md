@@ -95,9 +95,25 @@ Fill out the parameters in the different sections, add each molecule one by one,
 
 ## Run the simulation
 
+Make sure your .inp and .mol files are in the same folder.
+
 ### Run the simulation in the local environment
 
+If you want to run NERDSS locally, add it to your PATH and start the simulation by running:
+
+```bash
+./nerdss -f <your-input-filename>.inp
+```
+
 ### Run the simulation using Docker
+
+If you are using Docker, start the simulation by running:
+
+```bash
+docker run -e RUN_NERDSS=true -e ANALYZE_OUTPUT=true -p 8888:8888 -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
+```
+
+The simulation will then begin. Once it is done, a Jupyter environment with `ioNERDSS` installed will be ready for use.
 
 ## Outputs of the simulation
 
