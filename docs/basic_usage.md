@@ -39,6 +39,39 @@ end reactions
 
 ## Prepare the .mol files for the molecule types in the simulation
 
+The following A.mol file is needed for the simulation and can be downloaded from [here](./NERDSSInputs/A.mol).
+
+```bash
+name    = A
+
+# translational diffusion constants
+D       = [20.0,20.0,20.0]
+
+# rotational diffusion constants
+Dr      = [0.0,0.0,0.0]
+
+# Coordinates
+COM     0.0000    0.0000    0.0000
+a       0.0000    0.0000    0.0000
+```
+
+The following R.mol file is also required for the simulation and can be downloaded from [here](./NERDSSInputs/R.mol).
+```bash
+name    = R
+
+# translational diffusion constants
+D       = [20.0,20.0,20.0]
+
+# rotational diffusion constants
+Dr      = [0.0,0.0,0.0]
+
+# Coordinates
+COM     0.0000    0.0000    0.0000
+r       0.0000    0.0000    0.0000
+```
+
+Please refer to [user guide](https://github.com/mjohn218/NERDSS/blob/master/NERDSS_USER_GUIDE.pdf) in the NERDSS repository for the explanation of each parameter.
+
 ## Use the GUI provided in the ioNERDSS library to generate the .inp and .mol files (optional)
 
 ## Run the simulation
