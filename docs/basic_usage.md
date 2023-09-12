@@ -95,7 +95,7 @@ Fill out the parameters in the different sections, add each molecule one by one,
 
 ## Run the simulation
 
-Make sure your .inp and .mol files are in the same folder.
+Make sure your .inp and .mol files are in the same folder. Navigate to that folder.
 
 ### Run the simulation in the local environment
 

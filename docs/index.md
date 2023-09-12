@@ -30,6 +30,7 @@ Dive deep into specific features and use-cases with our detailed tutorials.
 
 - [GitHub Repository](https://github.com/mjohn218/NERDSS)
 - [FAQs](faqs.md)
+- [Johnson Group](https://sites.krieger.jhu.edu/johnson-lab/)
 
 ---
 
