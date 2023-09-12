@@ -699,7 +699,7 @@
 
 <h2 id="quick-start-guide-for-nerdss-setup">Quick Start Guide for NERDSS Setup</h2>
 <p><strong>Note</strong>:</p>
-<p>If you prefer using <a href="https://www.docker.com">Docker</a> for environment setup, jump directly to <strong>Step 4</strong>.</p>
+<p>If you prefer using <a href="https://www.docker.com">Docker</a> for environment setup (it might be slow), jump directly to <strong>Step 4</strong>.</p>
 <p>Windows OS: It's recommended to use either Windows Subsystem for Linux (WSL) or <a href="https://www.docker.com">Docker</a>.</p>
 <p><strong>Step 1: Clone the Repository</strong></p>
 <pre><code class="language-bash">git clone https://github.com/mjohn218/NERDSS.git
@@ -732,6 +732,7 @@ make serial
 conda activate ionerdss
 conda install pip
 pip install ioNERDSS
+pip install jupyter
 </code></pre>
 <p><strong>Step 4: Using Docker for Environment Setup (Optional)</strong></p>
 <p>If you'd rather not install the required tools directly on your machine, you can use Docker:</p>
