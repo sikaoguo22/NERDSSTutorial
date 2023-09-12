@@ -910,8 +910,16 @@ ion.gui()
 <p><img alt="GUI 4" src="../images/gui4.png" /></p>
 <p><img alt="GUI 5" src="../images/gui5.png" /></p>
 <h2 id="run-the-simulation">Run the simulation</h2>
+<p>Make sure your .inp and .mol files are in the same folder.</p>
 <h3 id="run-the-simulation-in-the-local-environment">Run the simulation in the local environment</h3>
+<p>If you want to run NERDSS locally, add it to your PATH and start the simulation by running:</p>
+<pre><code class="language-bash">./nerdss -f &lt;your-input-filename&gt;.inp
+</code></pre>
 <h3 id="run-the-simulation-using-docker">Run the simulation using Docker</h3>
+<p>If you are using Docker, start the simulation by running:</p>
+<pre><code class="language-bash">docker run -e RUN_NERDSS=true -e ANALYZE_OUTPUT=true -p 8888:8888 -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
+</code></pre>
+<p>The simulation will then begin. Once it is done, a Jupyter environment with <code>ioNERDSS</code> installed will be ready for use.</p>
 <h2 id="outputs-of-the-simulation">Outputs of the simulation</h2>
 <h3 id="analyze-the-output-using-ionerdss">Analyze the output using ioNERDSS</h3>
 <h3 id="render-movies-for-the-trajectory">Render movies for the trajectory</h3>
