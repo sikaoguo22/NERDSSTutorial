@@ -74,7 +74,24 @@ Please refer to [user guide](https://github.com/mjohn218/NERDSS/blob/master/NERD
 
 ## Use the GUI provided in the ioNERDSS library to generate the .inp and .mol files (optional)
 
+You can generate input files using the GUI provided by the ioNERDSS library. After installing ioNERDSS using pip, start a Python interpreter and run the following command to start the GUI:
 
+```python
+import ioNERDSS as ion
+ion.gui()
+```
+
+Fill out the parameters in the different sections, add each molecule one by one, followed by each reaction. Finally, click on the "Generate" button. Below are some snapshots.
+
+![GUI 1](images/gui1.png)
+
+![GUI 2](images/gui2.png)
+
+![GUI 3](images/gui3.png)
+
+![GUI 4](images/gui4.png)
+
+![GUI 5](images/gui5.png)
 
 ## Run the simulation
 

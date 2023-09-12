@@ -46,6 +46,17 @@ make serial
 
 The resulting executable will be located in the `bin` folder.
 
+**Install ioNERDSS library from PyPi**
+
+Install [Anaconda](https://www.anaconda.com/download/), then
+
+```bash
+conda create --name ionerdss
+conda activate ionerdss
+conda install pip
+pip install ioNERDSS
+```
+
 **Step 4: Using Docker for Environment Setup (Optional)**
 
 If you'd rather not install the required tools directly on your machine, you can use Docker:
