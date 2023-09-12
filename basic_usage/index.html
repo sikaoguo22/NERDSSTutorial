@@ -871,6 +871,33 @@ start reactions
 end reactions
 </code></pre>
 <h2 id="prepare-the-mol-files-for-the-molecule-types-in-the-simulation">Prepare the .mol files for the molecule types in the simulation</h2>
+<p>The following A.mol file is needed for the simulation and can be downloaded from <a href="../NERDSSInputs/A.mol">here</a>.</p>
+<pre><code class="language-bash">name    = A
+
+# translational diffusion constants
+D       = [20.0,20.0,20.0]
+
+# rotational diffusion constants
+Dr      = [0.0,0.0,0.0]
+
+# Coordinates
+COM     0.0000    0.0000    0.0000
+a       0.0000    0.0000    0.0000
+</code></pre>
+<p>The following R.mol file is also required for the simulation and can be downloaded from <a href="../NERDSSInputs/R.mol">here</a>.</p>
+<pre><code class="language-bash">name    = R
+
+# translational diffusion constants
+D       = [20.0,20.0,20.0]
+
+# rotational diffusion constants
+Dr      = [0.0,0.0,0.0]
+
+# Coordinates
+COM     0.0000    0.0000    0.0000
+r       0.0000    0.0000    0.0000
+</code></pre>
+<p>Please refer to <a href="https://github.com/mjohn218/NERDSS/blob/master/NERDSS_USER_GUIDE.pdf">user guide</a> in the NERDSS repository for the explanation of each parameter.</p>
 <h2 id="use-the-gui-provided-in-the-ionerdss-library-to-generate-the-inp-and-mol-files-optional">Use the GUI provided in the ioNERDSS library to generate the .inp and .mol files (optional)</h2>
 <h2 id="run-the-simulation">Run the simulation</h2>
 <h3 id="run-the-simulation-in-the-local-environment">Run the simulation in the local environment</h3>
