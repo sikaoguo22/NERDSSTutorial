@@ -2,7 +2,7 @@
 
 **Note**:
 
-If you prefer using [Docker](https://www.docker.com) for environment setup, jump directly to **Step 4**.
+If you prefer using [Docker](https://www.docker.com) for environment setup (it might be slow), jump directly to **Step 4**.
 
 Windows OS: It's recommended to use either Windows Subsystem for Linux (WSL) or [Docker](https://www.docker.com).
 
@@ -55,6 +55,7 @@ conda create --name ionerdss
 conda activate ionerdss
 conda install pip
 pip install ioNERDSS
+pip install jupyter
 ```
 
 **Step 4: Using Docker for Environment Setup (Optional)**

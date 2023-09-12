@@ -97,7 +97,7 @@ Fill out the parameters in the different sections, add each molecule one by one,
 
 Make sure your .inp and .mol files are in the same folder. Navigate to that folder.
 
-### Run the simulation in the local environment
+### Run the simulation in the local environment (Generally faster)
 
 If you want to run NERDSS locally, add it to your PATH and start the simulation by running:
 
@@ -113,10 +113,75 @@ If you are using Docker, start the simulation by running:
 docker run -e RUN_NERDSS=true -e ANALYZE_OUTPUT=true -p 8888:8888 -v $(pwd):/SIMULATION -it sikaoguo/nerdsstutorial:latest
 ```
 
-The simulation will then begin. Once it is done, a Jupyter environment with `ioNERDSS` installed will be ready for use.
+The simulation will then begin. The standard output is written to output.log. Once it is done, a Jupyter environment with `ioNERDSS` installed will be ready for use.
 
 ## Outputs of the simulation
 
-### Analyze the output using ioNERDSS
+The file [copy_numbers_time.dat](./NERDSSOutputs/basic/copy_numbers_time.dat) stores the time dependence of the copy numbers of all species in the system. Below are the first five lines of this file.
+
+```bash
+Time (s),A(a),R(r),A(a!1).R(r!1)
+0,1000,1000,0
+2e-05,990,990,10
+4e-05,980,980,20
+6e-05,966,966,34
+```
+
+The file [histogram_complexes_time.dat](./NERDSSOutputs/basic/histogram_complexes_time.dat) contains the time dependence of the complex components. The first ten lines of this file are shown below.
+
+```bash
+Time (s): 0
+1000	A: 1.
+1000	R: 1.
+Time (s): 2e-05
+990	A: 1.
+10	A: 1. R: 1.
+990	R: 1.
+Time (s): 4e-05
+980	A: 1.
+20	A: 1. R: 1.
+980	R: 1.
+```
+
+The simulation snapshots are stored in the `PDB/` folder and are in the PDB format.
+
+### Analyze the output
+
+We will create a plot of monomer A(a) vs Time (s) and compare the simulation result with the [ODE theory](./NERDSSOutputs/basic/theoryODE.dat).
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Read the simulation data from the file
+sim_df = pd.read_csv('copy_numbers_time.dat', sep=',')
+
+# Read the ODE theory data from the file
+# Using regex to handle one or more spaces as the separator
+ode_df = pd.read_csv('theoryODE.dat', sep=r'\s+', skipinitialspace=True)
+
+# Plotting
+plt.figure(figsize=(6, 4))  # Adjust the figure size (width, height) in inches
+plt.plot(sim_df['Time (s)'], sim_df['A(a)'], 'o-', label='Simulation')
+plt.plot(ode_df['time(s)'], ode_df['A(t)'], 's-', label='ODE Theory')
+
+plt.xlabel('Time (s)', fontsize=14)
+plt.ylabel('A(a)', fontsize=14)
+plt.title('Monomer A(a) vs Time (s)', fontsize=16)
+plt.legend(fontsize=12)
+plt.grid(True, which='both', linestyle='--', linewidth=0.5)
+plt.tight_layout()
+
+# Save the figure in PNG format with a resolution of 300 dpi
+plt.savefig('comparison_plot.png', dpi=300, bbox_inches='tight')
+
+plt.show()
+```
+
+![Result](./NERDSSOutputs/basic/comparison_plot.png)
 
 ### Render movies for the trajectory
+
+You can generate movies using the PDB format with OVITO.
+
+![Movie](./NERDSSOutputs/basic/mov.gif)
