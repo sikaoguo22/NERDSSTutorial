@@ -66,6 +66,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#read-pdb-structures-from-the-database-and-generate-nerdss-inputs" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -425,6 +430,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    GetMolGeometryFromPDBStructure
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -435,6 +453,46 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-and-import-the-library" class="md-nav__link">
+    Install and Import the library
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualize-the-pdb-structure" class="md-nav__link">
+    Visualize the PDB structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-ionerdss-to-construct-the-coarse-grained-structure" class="md-nav__link">
+    Use ioNERDSS to construct the coarse-grained structure
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -625,6 +683,37 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-and-import-the-library" class="md-nav__link">
+    Install and Import the library
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualize-the-pdb-structure" class="md-nav__link">
+    Visualize the PDB structure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-ionerdss-to-construct-the-coarse-grained-structure" class="md-nav__link">
+    Use ioNERDSS to construct the coarse-grained structure
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -642,9 +731,68 @@
   
 
 
-  <h1>GetMolGeometryFromPDBStructure</h1>
+<h1 id="read-pdb-structures-from-the-database-and-generate-nerdss-inputs">Read PDB structures from the database and generate NERDSS inputs</h1>
+<p>This tutorial will explore how to generate inputs for NERDSS using the real PDB structure with the Virus Structure as an example. The PDB file we will use as the starting point can be found <a href="../NERDSSInputs/pdbdemo/gag.pdb">here</a>. Download the file and save it under your working directory.</p>
+<h2 id="install-and-import-the-library">Install and Import the library</h2>
+<pre><code class="language-bash">pip install ioNERDSS
+pip install py3Dmol
+</code></pre>
+<pre><code class="language-pthon">import ioNERDSS as ion
+import py3Dmol
+</code></pre>
+<h2 id="visualize-the-pdb-structure">Visualize the PDB structure</h2>
+<pre><code class="language-python">def show_pdb_with_chain_labels(pdb_id):
+    # Create a view with a specified width and height
+    view = py3Dmol.view(width=800, height=400)
 
+    # Add the PDB structure to the view
+    with open(f&quot;{pdb_id}.pdb&quot;, 'r') as f:
+        pdb_data = f.read()
+        view.addModel(pdb_data, format=&quot;pdb&quot;)
 
+    # Get the distinct chains from the PDB data
+    chains = set([line[21] for line in pdb_data.splitlines() if line.startswith(&quot;ATOM&quot;)])
+
+    # Define colors (you can extend this list or generate colors dynamically)
+    colors = ['red', 'green', 'blue', 'yellow', 'cyan', 'magenta', 'orange', 'purple']
+
+    # Set visualization options for each chain
+    for i, chain in enumerate(chains):
+        view.setStyle({'chain': chain}, {'stick': {'colorscheme': f&quot;{colors[i % len(colors)]}Carbon&quot;}})
+
+        # Compute the center of each chain manually
+        x, y, z, count = 0.0, 0.0, 0.0, 0
+        for line in pdb_data.splitlines():
+            if line.startswith(&quot;ATOM&quot;) and line[21] == chain:
+                x += float(line[30:38].strip())
+                y += float(line[38:46].strip())
+                z += float(line[46:54].strip())
+                count += 1
+        if count:
+            x /= count
+            y /= count
+            z /= count
+
+        # Add label for each chain
+        view.addLabel(chain, {'position': {'x': x, 'y': y, 'z': z}, 'backgroundColor': 'black', 'fontColor': 'white'})
+
+    view.zoomTo()
+
+    # Show the visualization
+    return view.show()
+
+# Use the function to visualize the PDB file
+show_pdb_with_chain_labels(&quot;gag&quot;)
+</code></pre>
+<p>You should be able to see the following image:</p>
+<p><img alt="gagpdb" src="../images/gag.png" /></p>
+<h2 id="use-ionerdss-to-construct-the-coarse-grained-structure">Use ioNERDSS to construct the coarse-grained structure</h2>
+<pre><code class="language-python">result1 = ion.dtb_PDB_separate_read(FileName='gag.pdb')
+result2 = ion.dtb_PDB_calc_angle(Result=result1)
+result3 = ion.dtb_PDB_norm_COM(Result=result2)
+ion.dtb_PDB_write_input(Result=result3)
+</code></pre>
+<p>The inputs for NERDSS will be in the current folder.</p>
 
 
 
